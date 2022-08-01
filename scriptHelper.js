@@ -46,7 +46,7 @@ console.log(validateInput(cargoLevel));
    if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
     alert("All fields are required!");
    }
-   else if (validateInput(pilot) == "Not a Number" || validateInput(copilot) == "Not a Number" || validateInput(fuelLevel) == "Is a number" || validateInput(cargoLevel) == "Is a number") {
+   else if (validateInput(pilot) != ("Not a Number") || validateInput(copilot) != ("Not a Number") || validateInput(fuelLevel) != ("Is a number") || validateInput(cargoLevel) != ("Is a number")) {
     alert("Make sure to enter valid information for each field!");
 //test for correct data types
    } else  {

@@ -19,7 +19,7 @@ window.addEventListener("load", function() {
    list.style.visibility = "hidden";
 
    form.addEventListener("submit", function(event) {
-    console.log("submiteventfire")
+    
     event.preventDefault();
     let pilotName = document.querySelector("input[name=pilotName]").value;
 
