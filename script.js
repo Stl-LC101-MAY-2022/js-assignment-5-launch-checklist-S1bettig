@@ -6,7 +6,7 @@ window.addEventListener("load", function() {
 
 //    let listedPlanets;
 //    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-//    let listedPlanetsResponse;
+//    let listedPlanetsResponse = myFetch("https://handlers.education.launchcode.org/static/planets.json").value;
 //    listedPlanetsResponse.then(function (result) {
 //        listedPlanets = result;
 //        console.log(listedPlanets);
@@ -19,7 +19,7 @@ window.addEventListener("load", function() {
    list.style.visibility = "hidden";
 
    form.addEventListener("submit", function(event) {
-    
+
     event.preventDefault();
     let pilotName = document.querySelector("input[name=pilotName]").value;
 

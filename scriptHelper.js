@@ -2,18 +2,18 @@
 require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-   // Here is the HTML formatting for our mission target div.
+//    Here is the HTML formatting for our mission target div.
 
-                // <h2>Mission Destination</h2>
+                // <h2> Mission Destination </h2>
                 // <ol>
-                //     <li>Name: </li>
-                //     <li>Diameter: </li>
+                //     <li>Name: ${name} </li>
+                //     <li>Diameter: `${diameter}` </li>
                 //     <li>Star: ${star}</li>
-                //     <li>Distance from Earth: </li>
-                //     <li>Number of Moons: </li>
+                //     <li>Distance from Earth: `${distance}` </li>
+                //     <li>Number of Moons: `${moons}` </li>
                 // </ol>
-                // <img src="">
-
+                // // <img src= ${`${imageUrl}`}>
+    
 }
 
 
@@ -21,16 +21,16 @@ function validateInput(testInput) {
 
         if (testInput == "" || testInput == null)
         {
-            return ("Empty");
+            return "Empty";
         
         }
         
-        if (typeof testInput == "number") {
-            return ("Is a number");
+        if (isNaN(testInput)) {
+            return "Not a Number";
         }
 
-        if (typeof testInput == "string") {
-            return ("Not a Number");
+        if (!isNaN(testInput)) {
+            return "Is a number";
         }
 }
 
@@ -47,13 +47,33 @@ console.log(validateInput(cargoLevel));
     alert("All fields are required!");
    }
    else if (validateInput(pilot) != ("Not a Number") || validateInput(copilot) != ("Not a Number") || validateInput(fuelLevel) != ("Is a number") || validateInput(cargoLevel) != ("Is a number")) {
-    alert("Make sure to enter valid information for each field!");
+    alert("Make sure to enter valid information for each field!")
 //test for correct data types
+     if ((fuelLevel) <= 10000 || (cargoLevel) >= 10000) { 
+        document.getElementById("launchStatus").style.visibility = "visible";
+        document.getElementById("faultyItems").style.visibility = "visible";
+        document.getElementById("fuelStatus").style.visibility = "visible";
+        document.getElementById("cargoStatus").style.visibility = "visible";
+
+    }
    } else  {
+
+    console.log(pilotStatus);
     console.log("ready");
 //data is valid, update page
-    list.style.visibilty = "visible";
-    pilotStatus.innerHTML = `Pilot Name: ${pilot} is ready for launch.`
+    document.getElementById("launchStatus").style.visibility = "visible";
+
+    document.getElementById("pilotStatus").style.visibility = "visible";
+    pilotStatus.innerHTML = `Pilot Name: ${pilot} is ready for launch.`;
+
+    document.getElementById("copilotStatus").style.visibility = "visible";
+    // copilotStatus.innerHTML = `Pilot Name: ${copilot} is ready for launch.`;
+
+    document.getElementById("fuelStatus").style.visibility = "visible";
+
+    document.getElementById("cargoStatus").style.visibility = "visible";
+
+
    }
    
 }
@@ -61,7 +81,8 @@ console.log(validateInput(cargoLevel));
 async function myFetch() {
     let planetsReturned;
 
-    planetsReturned = await fetch().then( function(response) {
+    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+        const div = document.getElementById("planets")
         });
 
     return planetsReturned;
