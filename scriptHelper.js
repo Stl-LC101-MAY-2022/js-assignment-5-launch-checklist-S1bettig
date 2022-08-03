@@ -3,23 +3,24 @@ require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
 //    Here is the HTML formatting for our mission target div.
-
-                // <h2> Mission Destination </h2>
-                // <ol>
-                //     <li>Name: ${name} </li>
-                //     <li>Diameter: `${diameter}` </li>
-                //     <li>Star: ${star}</li>
-                //     <li>Distance from Earth: `${distance}` </li>
-                //     <li>Number of Moons: `${moons}` </li>
-                // </ol>
-                // <img src= ${${imageUrl}}>
-    
+    let missionTarget = document.getElementById("missionTarget");
+    missionTarget.innerHTML = `
+                <h2> Mission Destination </h2>
+                <ol>
+                    <li>Name: ${name} </li>
+                    <li>Diameter: ${diameter} </li>
+                    <li>Star: ${star}</li>
+                    <li>Distance from Earth: ${distance} </li>
+                    <li>Number of Moons: ${moons} </li>
+                </ol>
+                <img src= ${imageUrl}>
+    `
 }
 
 
 function validateInput(testInput) {
 
-        if (testInput == "" || testInput == null)
+        if (testInput === "" || testInput === null)
         {
             return "Empty";
         
@@ -78,7 +79,7 @@ console.log(validateInput(cargoLevel));
     console.log(pilotStatus);
 //data is valid, update page
     document.getElementById("launchStatus").style.visibility = "visible";
-    // launchStatus.innerHTML = ("Shuttle is ready for launch.");
+    launchStatus.innerHTML = ("Shuttle is ready for launch.");
 
     document.getElementById("pilotStatus").style.visibility = "visible";
     pilotStatus.innerHTML = `Pilot Name: ${pilot} is ready for launch.`;
@@ -99,13 +100,16 @@ async function myFetch() {
     let planetsReturned;
 
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-        });
+    return response.json();
+    } );
 
     return planetsReturned;
 }
 
+
 function pickPlanet(planets) {
-    Math.floor(Math.random() * 5) + 1;
+    let numGen = Math.floor(Math.random() * planets.length);
+    return planets[numGen];
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;
