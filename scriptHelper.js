@@ -12,7 +12,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 //     <li>Distance from Earth: `${distance}` </li>
                 //     <li>Number of Moons: `${moons}` </li>
                 // </ol>
-                // // <img src= ${`${imageUrl}`}>
+                // <img src= ${${imageUrl}}>
     
 }
 
@@ -49,25 +49,42 @@ console.log(validateInput(cargoLevel));
    else if (validateInput(pilot) != ("Not a Number") || validateInput(copilot) != ("Not a Number") || validateInput(fuelLevel) != ("Is a number") || validateInput(cargoLevel) != ("Is a number")) {
     alert("Make sure to enter valid information for each field!")
 //test for correct data types
-     if ((fuelLevel) <= 10000 || (cargoLevel) >= 10000) { 
-        document.getElementById("launchStatus").style.visibility = "visible";
+   } else  {
+
+    if (fuelLevel <= 10000) {
+        console.log("within 55") 
+        document.getElementById("launchStatusCheck").style.visibility = "visible";
         document.getElementById("faultyItems").style.visibility = "visible";
         document.getElementById("fuelStatus").style.visibility = "visible";
         document.getElementById("cargoStatus").style.visibility = "visible";
+        document.getElementById("launchStatusCheck").style.color = "red";
+        fuelStatus.innerHTML = ("Fuel level is not high enough for launch");
+        launchStatus.innerHTML = ("Shuttle is not ready for launch.");
+
 
     }
-   } else  {
+
+    if (cargoLevel >= 10000){
+        document.getElementById("launchStatusCheck").style.visibility = "visible"
+        document.getElementById("faultyItems").style.visibility = "visible";
+        document.getElementById("cargoStatus").style.visibility = "visible";
+        document.getElementById("launchStatusCheck").style.color = "red";
+        cargoStatus.innerHTML = ("Cargo mass is not low enough for launch")
+        launchStatus.innerHTML = ("Shuttle is not ready for launch.");
+
+    }
+
 
     console.log(pilotStatus);
-    console.log("ready");
 //data is valid, update page
     document.getElementById("launchStatus").style.visibility = "visible";
+    // launchStatus.innerHTML = ("Shuttle is ready for launch.");
 
     document.getElementById("pilotStatus").style.visibility = "visible";
     pilotStatus.innerHTML = `Pilot Name: ${pilot} is ready for launch.`;
 
     document.getElementById("copilotStatus").style.visibility = "visible";
-    // copilotStatus.innerHTML = `Pilot Name: ${copilot} is ready for launch.`;
+    copilotStatus.innerHTML = (`Copilot Name: ${copilot} is ready for launch`);
 
     document.getElementById("fuelStatus").style.visibility = "visible";
 
@@ -76,19 +93,19 @@ console.log(validateInput(cargoLevel));
 
    }
    
-}
+};
 
 async function myFetch() {
     let planetsReturned;
 
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-        const div = document.getElementById("planets")
         });
 
     return planetsReturned;
 }
 
 function pickPlanet(planets) {
+    Math.floor(Math.random() * 5) + 1;
 }
 
 module.exports.addDestinationInfo = addDestinationInfo;
