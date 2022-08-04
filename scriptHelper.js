@@ -54,32 +54,33 @@ console.log(validateInput(cargoLevel));
 
     if (fuelLevel <= 10000) {
         console.log("within 55") 
-        document.getElementById("launchStatusCheck").style.visibility = "visible";
+        document.getElementById("launchStatus").style.visibility = "visible";
         document.getElementById("faultyItems").style.visibility = "visible";
         document.getElementById("fuelStatus").style.visibility = "visible";
         document.getElementById("cargoStatus").style.visibility = "visible";
-        document.getElementById("launchStatusCheck").style.color = "red";
+        document.getElementById("launchStatus").style.color = "red";
         fuelStatus.innerHTML = ("Fuel level is not high enough for launch");
         launchStatus.innerHTML = ("Shuttle is not ready for launch.");
 
 
     }
 
-    if (cargoLevel >= 10000){
-        document.getElementById("launchStatusCheck").style.visibility = "visible"
+    else if (cargoLevel >= 10000){
+        document.getElementById("launchStatus").style.visibility = "visible"
         document.getElementById("faultyItems").style.visibility = "visible";
         document.getElementById("cargoStatus").style.visibility = "visible";
-        document.getElementById("launchStatusCheck").style.color = "red";
+        document.getElementById("launchStatus").style.color = "red";
         cargoStatus.innerHTML = ("Cargo mass is not low enough for launch")
         launchStatus.innerHTML = ("Shuttle is not ready for launch.");
 
     }
-
+    else {
 
     console.log(pilotStatus);
 //data is valid, update page
     document.getElementById("launchStatus").style.visibility = "visible";
     launchStatus.innerHTML = ("Shuttle is ready for launch.");
+    document.getElementById("launchStatus").style.color = "green";
 
     document.getElementById("pilotStatus").style.visibility = "visible";
     pilotStatus.innerHTML = `Pilot Name: ${pilot} is ready for launch.`;
@@ -91,7 +92,7 @@ console.log(validateInput(cargoLevel));
 
     document.getElementById("cargoStatus").style.visibility = "visible";
 
-
+   }
    }
    
 };
