@@ -39,11 +39,6 @@ function validateInput(testInput) {
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     // grab list elements from page
     let pilotStatus = document.getElementById("pilotStatus")
-    console.log(pilot);
-console.log(validateInput(pilot));
-console.log(validateInput(copilot));
-console.log(validateInput(fuelLevel));
-console.log(validateInput(cargoLevel));
    if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoLevel) === "Empty") {
     alert("All fields are required!");
    }
@@ -56,8 +51,6 @@ console.log(validateInput(cargoLevel));
         console.log("within 55") 
         document.getElementById("launchStatus").style.visibility = "visible";
         document.getElementById("faultyItems").style.visibility = "visible";
-        document.getElementById("fuelStatus").style.visibility = "visible";
-        document.getElementById("cargoStatus").style.visibility = "visible";
         document.getElementById("launchStatus").style.color = "red";
         fuelStatus.innerHTML = ("Fuel level is not high enough for launch");
         launchStatus.innerHTML = ("Shuttle is not ready for launch.");
@@ -68,7 +61,6 @@ console.log(validateInput(cargoLevel));
     else if (cargoLevel >= 10000){
         document.getElementById("launchStatus").style.visibility = "visible"
         document.getElementById("faultyItems").style.visibility = "visible";
-        document.getElementById("cargoStatus").style.visibility = "visible";
         document.getElementById("launchStatus").style.color = "red";
         cargoStatus.innerHTML = ("Cargo mass is not low enough for launch")
         launchStatus.innerHTML = ("Shuttle is not ready for launch.");
@@ -76,7 +68,6 @@ console.log(validateInput(cargoLevel));
     }
     else {
 
-    console.log(pilotStatus);
 //data is valid, update page
     document.getElementById("launchStatus").style.visibility = "visible";
     launchStatus.innerHTML = ("Shuttle is ready for launch.");
